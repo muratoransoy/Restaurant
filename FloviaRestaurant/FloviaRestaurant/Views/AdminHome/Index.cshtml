@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    FloviaRestaurant.Models.Entity.DataContext db = new FloviaRestaurant.Models.Entity.DataContext();
+    FloviaRestaurant.Models.User user = db.User.FirstOrDefault(x => x.UserName == User.Identity.Name);
+}
+
+        <section class="section profile">
+            <div class="row">
+                <div class="col-xl-4">
+
+                    <div class="card">
+                        <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+
+                            <img src="~/Content/assets/img/Flavio.png" alt="Profile" class="rounded-circle">
+                            <h2>@User.Identity.Name</h2>
+                            <div class="social-links mt-2">
+                                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-xl-8">
+
+                    <div class="card">
+                        <div class="card-body pt-3">
+                            <!-- Bordered Tabs -->
+
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                               <ul class="nav nav-tabs nav-tabs-bordered">
+                                        <li class="nav-item">
+                                            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content pt-2">
+                                        <div class="tab-pane fade show active profile-overview" id="profile-overview">
+                                            <h5 class="card-title">Profile Details</h5>
+
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-4 label ">Name</div>
+                                                <div class="col-lg-9 col-md-8">@user.Name</div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-4 label">Surname</div>
+                                                <div class="col-lg-9 col-md-8">@user.Surname</div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-4 label">BirthDay</div>
+                                                <div class="col-lg-9 col-md-8">@user.BirthDay</div>
+                                            </div>
+                                             <div class="row">
+                                                <div class="col-lg-3 col-md-4 label">Phone</div>
+                                                <div class="col-lg-9 col-md-8">@user.Phone</div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-4 label">Email</div>
+                                                <div class="col-lg-9 col-md-8">@user.Email</div>
+                                            </div>
+
+                                        </div>
+                                    </div><!-- End Bordered Tabs -->
+
+                            }
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+

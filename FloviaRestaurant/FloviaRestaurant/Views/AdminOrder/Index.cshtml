@@ -1,0 +1,75 @@
+﻿@model FloviaRestaurant.Models.ViewModels.OrderMultiModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int i = 0;
+}
+<div class="card">
+    <div class="card-body">
+
+        <h5 class="card-title">Order Table</h5>
+
+        <!-- Default Table -->
+        <a class="btn btn-primary" href="~/AdminOrder/Create">Create</a>
+        <table class="table">
+
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">User</th>
+                    <th scope="col">Food</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">UnitPrice</th>
+                    <th scope="col">TotalPrice</th>
+                    <th scope="col">OrderDate</th>
+                    <th scope="col">PickupDate</th>
+                    <th scope="col">IsActive</th>
+                    <th scope="col">Settings</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Orders.Count == 0)
+                {
+
+
+
+                    <tr>
+                        <td colspan="5">Order bulunmamaktadır.</td>
+                    </tr>
+                }
+                else
+                {
+                    foreach (var item in Model.Orders)
+                    {
+                        i++;
+                        <tr>
+                            <th scope="row">@i</th>
+                            <td>@item.User.Name</td>
+                            <td>@item.FoodItem.Name</td>
+                            <td>@item.Quantity</td>
+                            <td>@item.UnitPrice</td>
+                            <td>@item.TotalPrice</td>
+                            <td>@item.OrderDate</td>
+                            <td>@item.PickupDate</td>
+                            <td>
+                                <input type="checkbox" class="form-check-input" checked="@item.IsActive"
+                                       value="true" data-val="true" disabled="true" />
+                            </td>
+
+                            <td>
+                                <a href="~/AdminOrder/Edit/@item.Id" class="ri-edit-box-line "></a>
+
+                                &nbsp;|&nbsp;
+                                <a href="~/AdminOrder/Delete/@item.Id" class="ri-delete-bin-6-line"></a>
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+        <!-- End Default Table Example -->
+    </div>
+</div>
+
+

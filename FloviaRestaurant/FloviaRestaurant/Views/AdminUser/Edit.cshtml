@@ -1,0 +1,86 @@
+﻿@model FloviaRestaurant.Models.ViewModels.UserMultiModel
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Edit User</h5>
+
+        <!-- General Form Elements -->
+        <form method="post">
+            <div class="row mb-3">
+                <label for="inputText" class="col-sm-2 col-form-label">Surname</label>
+                <div class="col-sm-10">
+                    <input type="text" id="Surname" name="Surname" class="form-control" value="@Model.User.Surname">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="inputText" class="col-sm-2 col-form-label">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" id="Name" name="Name" class="form-control" value="@Model.User.Name">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="inputText" class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-10">
+                    <input type="email" id="Email" name="Email" class="form-control" value="@Model.User.Email">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="inputText" class="col-sm-2 col-form-label">BirthDay</label>
+                <div class="col-sm-10">
+                    <input type="date" id="BirthDay" name="BirthDay" class="form-control" @Model.User.BirthDay>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="inputText" class="col-sm-2 col-form-label">Username</label>
+                <div class="col-sm-10">
+                    <input type="text" id="UserName" name="UserName" class="form-control" @Model.User.UserName>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="inputText" class="col-sm-2 col-form-label">Password</label>
+                <div class="col-sm-10">
+                    <input type="password" id="Password" name="Password" class="form-control" value="@Model.User.Password">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label for="inputText" class="col-sm-2 col-form-label">Phone</label>
+                <div class="col-sm-10">
+                    <input type="tel" id="Phone" name="Phone" class="form-control" value="@Model.User.Phone">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">Select</label>
+                <div class="col-sm-10">
+                    <select id="RoleId" name="RoleId" class="form-select" aria-label="Default select example">
+                        <optgroup>
+                            <option value="@Model.User.Role.Id">@Model.User.Role.Name</option>
+                        </optgroup>
+                        @foreach (var rol in Model.Roles)
+                        {
+                            <option value="@rol.Id">@rol.Name</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="row-mb-3">
+                <label for="IsActive" class="col-sm-2 col-form-label">Is Active</label>
+                <input type="checkbox" id="IsActive" name="IsActive" class="form-check-input"
+                       value="true" data-val="true" checked="@Model.User.IsActive">
+            </div>
+            <input type="hidden" name="Id" id="Id" value="@Model.User.Id" />
+            <p class="text-blue">@ViewBag.mesaj</p>
+            <div class="row mb-3">
+                <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">Edit</button>
+                </div>
+            </div>
+
+        </form><!-- End General Form Elements -->
+
+    </div>
+</div>
+

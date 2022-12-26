@@ -1,0 +1,65 @@
+﻿@model List<FloviaRestaurant.Models.Role>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int i = 0;
+}
+
+
+<div class="card">
+    <div class="card-body">
+
+        <h5 class="card-title">Role Table</h5>
+
+        <!-- Default Table -->
+        <a class="btn btn-primary" href="~/Role/Create">Create</a>
+        <table class="table">
+
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">IsActive</th>
+                    <th scope="col">Settings</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Count == 0)
+                {
+
+
+
+                    <tr>
+                        <td colspan="5">Role bulunmamakdadır.</td>
+                    </tr>
+                }
+                else
+                {
+                    foreach (var item in Model)
+                    {
+                        i++;
+                        <tr>
+                            <th scope="row">@i</th>
+                            <td>@item.Name</td>
+
+                            <td>
+                                <input type="checkbox" class="form-check-input" checked="@item.IsActive"
+                                       value="true" data-val="true" disabled="true" />
+                            </td>
+
+                            <td>
+                                <a href="~/Role/Edit/@item.Id" class="ri-edit-box-line "></a>
+
+                                &nbsp;|&nbsp;
+                                <a href="~/Role/Delete/@item.Id" class="ri-delete-bin-6-line"></a>
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+        <!-- End Default Table Example -->
+    </div>
+</div>
+

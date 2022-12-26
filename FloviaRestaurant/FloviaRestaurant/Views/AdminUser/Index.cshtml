@@ -1,0 +1,76 @@
+﻿@model FloviaRestaurant.Models.ViewModels.UserMultiModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int i = 0;
+}
+
+<div class="card">
+    <div class="card-body">
+
+        <h5 class="card-title">User Table</h5>
+
+        <!-- Default Table -->
+        <a class="btn btn-primary" href="~/AdminUser/Create">Create</a>
+        <table class="table">
+
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Surname</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">BirthDay</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Password</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">IsActive</th>
+                    <th scope="col">Settings</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Users.Count == 0)
+                {
+
+
+
+                    <tr>
+                        <td colspan="5">User bulunmamaktadır.</td>
+                    </tr>
+                }
+                else
+                {
+                    foreach (var item in Model.Users)
+                    {
+                        i++;
+            <tr>
+                <th scope="row">@i</th>
+                <td>@item.Surname</td>
+                <td>@item.Name</td>
+                <td>@item.Role.Name</td>
+                <td>@item.Email</td>
+                <td>@item.BirthDay</td>
+                <td>@item.UserName</td>
+                <td>@item.Password</td>
+                <td>@item.Phone</td>
+                <td>
+                    <input type="checkbox" class="form-check-input" checked="@item.IsActive"
+                           value="true" data-val="true" disabled="true" />
+                </td>
+
+                <td>
+                    <a href="~/AdminUser/Edit/@item.Id" class="ri-edit-box-line "></a>
+
+                    &nbsp;|&nbsp;
+                    <a href="~/AdminUser/Delete/@item.Id" class="ri-delete-bin-6-line"></a>
+                </td>
+            </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+        <!-- End Default Table Example -->
+    </div>
+</div>
